@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NT Woods - Owner Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        /* Enhanced Light Mode Palette */
+        --bg-light: linear-gradient(135deg, #e0f2f7 0%, #c1e4f0 100%); /* Soft sky blue */
+        --card-light: rgba(255, 255, 255, 0.98); /* Near-white with slight transparency */
+        --text-light: #2c3e50; /* Dark slate grey for readability */
+
+        /* Enhanced Dark Mode Palette */
+        --bg-dark: linear-gradient(135deg, #1f2a38 0%, #0d131f 100%); /* Deep cool grey */
+        --card-dark: rgba(30, 41, 59, 0.95); /* Darker blue-grey with slight transparency */
+        --text-dark: #ecf0f1; /* Light grey for contrast */
+
+        /* Accent Gradients - More harmonious and clean */
+        --primary: linear-gradient(135deg, #6a82fb 0%, #fc5c7d 100%); /* Modern vibrant purple-pink */
+        --primary-solid: #6a82fb;
+        --secondary: linear-gradient(135deg, #ffeaa7 0%, #ff6b6b 100%); /* Warm sunset gradient */
+        --success: linear-gradient(135deg, #2ed573 0%, #1abc9c 100%); /* Fresh greens */
+        --warning: linear-gradient(135deg, #f7d794 0%, #f1c40f 100%); /* Soft, appealing yellows */
+        --error: linear-gradient(135deg, #eb3b5a 0%, #ff8c8c 100%); /* Clear, distinct reds */
+
+        /* Shadow adjustments for softer look */
+        --shadow-light: 0 8px 25px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+        --shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-light);
+        color: var(--text-light);
+        min-height: 100vh;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-x: hidden;
+    }
+
+    body.dark-mode {
+        background: var(--bg-dark);
+        color: var(--text-dark);
+    }
+
+    /* Header Styles */
+    .header {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 1.5rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        animation: slideDown 0.6s ease-out;
+    }
+
+    .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .logo {
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        letter-spacing: -0.5px;
+    }
+
+    .theme-toggle {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Main Container */
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    /* Section Headers */
+    .section {
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out 0.2s forwards;
+    }
+
+    .subsection-title {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 2rem 0 1rem 0;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Dashboard Grid */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .crm-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .purchase-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    /* Card Styles */
+    .card {
+        background: var(--card-light);
+        border-radius: 16px;
+        padding: 1.5rem; /* Default padding for desktop */
+        box-shadow: var(--shadow-light);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .card.small {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    body.dark-mode .card {
+        background: var(--card-dark);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--primary);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .card-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: white;
+        background: var(--primary);
+        transition: all 0.3s ease;
+    }
+
+    .card.small .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .card:hover .card-icon {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .card-title {
+        font-size: 1.1rem; /* Default font size for desktop */
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+        text-align: center;
+        color: var(--text-light);
+        line-height: 1.3;
+    }
+
+    .card.small .card-title {
+        font-size: 0.95rem;
+        margin-bottom: 0.6rem;
+    }
+
+    body.dark-mode .card-title {
+        color: var(--text-dark);
+    }
+
+    .card-count {
+        font-size: 1.3rem; /* Default font size for desktop */
+        font-weight: 700;
+        text-align: center;
+        padding: 0.8rem;
+        border-radius: 10px;
+        margin-top: 0.8rem;
+        transition: all 0.3s ease;
+    }
+
+    .card.small .card-count {
+        font-size: 1.1rem;
+        padding: 0.6rem;
+    }
+
+/* Status States */
+.has-pending {
+    border-left: 4px solid #f9a825; /* Bright amber indicator */
+    background: #fff8e1; /* Light amber background for visibility */
+    animation: pulse 2s infinite;
+}
+
+/* Pending count badge */
+.has-pending .card-count {
+    background: linear-gradient(135deg, #ffc107 0%, #f9a825 100%);
+    color: #212121; /* Deeper text color for better contrast */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon section of the card */
+.has-pending .card-icon {
+    background: linear-gradient(135deg, #ffc107 0%, #f57f17 100%);
+    color: #212121;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); /* Adds depth */
+}
+
+    .all-clear {
+        border-left: 4px solid #28a745; /* Deeper green */
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, rgba(40, 167, 69, 0.05) 100%);
+    }
+
+    .all-clear .card-count {
+        background: var(--success);
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .all-clear .card-icon {
+        background: var(--success);
+    }
+
+    .error-state {
+        border-left: 4px solid #dc3545; /* Stronger red */
+        background: linear-gradient(135deg, rgba(220, 53, 69, 0.1) 0%, rgba(220, 53, 69, 0.05) 100%);
+    }
+
+    .error-state .card-count {
+        background: var(--error);
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .error-state .card-icon {
+        background: var(--error);
+    }
+
+    /* Loading State */
+    .loading .card-count {
+        background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        color: #6b7280;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .loading .card-count::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        animation: loading 1.5s infinite;
+    }
+
+    /* CRM Section Styling */
+    .crm-section {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden; /* Needed for the collapsible effect */
+        transition: max-height 0.5s ease-out; /* Smooth transition for collapsing */
+    }
+
+    .crm-section.collapsed {
+        max-height: 5rem; /* Approximate height of the header + padding */
+    }
+    
+    .crm-section-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+    }
+
+    .crm-section-header .toggle-icon {
+        position: absolute;
+        right: 1rem;
+        font-size: 1.5rem;
+        color: white;
+        transition: transform 0.3s ease;
+    }
+
+    .crm-section.collapsed .crm-section-header .toggle-icon {
+        transform: rotate(-90deg);
+    }
+
+
+    .crm-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: white;
+        text-align: center;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        flex-grow: 1; /* Allow name to take available space */
+    }
+
+    /* Animations */
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.01); }
+    }
+
+    @keyframes loading {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(200%); }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    /* Mobile-first adjustments for cards and layout */
+    @media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+
+        /* Adjust header and general text for smaller screens */
+        .header {
+            padding: 1rem;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+        }
+
+        .theme-toggle {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .crm-name {
+            font-size: 1.1rem;
+        }
+
+        /* Horizontal scrolling for card grids */
+        .dashboard-grid,
+        .purchase-grid,
+        .crm-grid {
+            grid-template-columns: unset; /* Override grid columns */
+            display: flex; /* Use flexbox for horizontal layout */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            scroll-snap-type: x mandatory; /* Optional: for snapping effect */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            padding-bottom: 0.5rem; /* Space for scrollbar if needed */
+            margin-bottom: 1rem;
+            gap: 1rem; /* Adjust gap for mobile horizontal scroll */
+        }
+
+        .dashboard-grid > .card,
+        .purchase-grid > .card,
+        .crm-grid > .card {
+            flex: 0 0 auto; /* Prevent cards from shrinking */
+            width: 70%; /* Cards take 70% of viewport width */
+            max-width: 250px; /* Cap max width for consistency */
+            scroll-snap-align: start; /* Snap to start of card */
+            margin-right: 0.8rem; /* Space between cards */
+            padding: 1rem; /* Smaller padding for cards */
+            border-radius: 12px; /* Slightly smaller border-radius */
+        }
+
+        /* Ensure small cards are even smaller */
+        .crm-grid > .card.small {
+            width: 65%; /* CRM small cards a bit narrower */
+            max-width: 200px;
+            padding: 0.8rem;
+        }
+
+        /* Adjust card content for mobile */
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .card.small .card-icon {
+            width: 35px;
+            height: 35px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 0.95rem; /* Smaller title font size */
+            margin-bottom: 0.5rem;
+        }
+
+        .card.small .card-title {
+            font-size: 0.85rem;
+        }
+
+        .card-count {
+            font-size: 1.1rem; /* Smaller count font size */
+            padding: 0.6rem;
+            margin-top: 0.6rem;
+        }
+
+        .card.small .card-count {
+            font-size: 0.95rem;
+            padding: 0.5rem;
+        }
+
+        /* Collapsible CRM sections */
+        .crm-section {
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .crm-section.collapsed {
+            max-height: 4.5rem; /* Even smaller collapsed height */
+        }
+
+        .crm-section-header {
+            padding-bottom: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .crm-section-header .toggle-icon {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .dashboard-grid > .card,
+        .purchase-grid > .card,
+        .crm-grid > .card {
+            width: 85%; /* Even wider cards on very small screens to ensure content fits */
+            max-width: 220px; /* Adjust max-width accordingly */
+            margin-right: 0.6rem;
+            padding: 0.8rem;
+        }
+        .crm-grid > .card.small {
+            width: 80%; /* Small CRM cards on very small screens */
+            max-width: 180px;
+            padding: 0.6rem;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+        .card.small .card-icon {
+            width: 30px;
+            height: 30px;
+            font-size: 0.8rem;
+        }
+        .card-title {
+            font-size: 0.85rem;
+        }
+        .card.small .card-title {
+            font-size: 0.75rem;
+        }
+        .card-count {
+            font-size: 1rem;
+            padding: 0.5rem;
+        }
+        .card.small .card-count {
+            font-size: 0.9rem;
+        }
+        .logo {
+            font-size: 1.4rem;
+        }
+        .theme-toggle {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        .section-title {
+            font-size: 1.1rem;
+        }
+        .crm-name {
+            font-size: 1rem;
+        }
+        .crm-section.collapsed {
+            max-height: 4rem; /* Further reduce collapsed height for very small screens */
+        }
+    }
+
+
+    /* Animation delays for staggered loading */
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.15s; }
+    .card:nth-child(3) { animation-delay: 0.2s; }
+    .card:nth-child(4) { animation-delay: 0.25s; }
+    .card:nth-child(5) { animation-delay: 0.3s; }
+    .card:nth-child(6) { animation-delay: 0.35s; }
+    .card:nth-child(7) { animation-delay: 0.4s; }
+    .card:nth-child(8) { animation-delay: 0.45s; }
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">🌲 NT Woods</div>
+      <button class="theme-toggle" onclick="toggleDarkMode()">
+        🌓 Toggle Theme
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="section">
+      <h2 class="section-title">📋 Sales Orders Management</h2>
+      <div class="dashboard-grid">
+        <div class="card loading" id="crmAssignCard" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-2-FINAL_SALES_COORDINATOR.html'">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">CRM Not Assigned</h3>
+          <div class="card-count" id="crmAssignCount">Loading...</div>
+        </div>
+
+        <div class="card loading" id="ownersApprovalCard" onclick="location.href='https://ntwoods.github.io/ordertodispatch/OwnerApprovalSO.html'">
+          <div class="card-icon">✅</div>
+          <h3 class="card-title">Owner's Approval</h3>
+          <div class="card-count" id="ownersApprovalCount">Loading...</div>
+        </div>
+
+        <div class="card loading" id="dispatchConfirmCard" onclick="location.href='https://ntwoods.github.io/ordertodispatch/DispatchTeam.html'">
+          <div class="card-icon">🚛</div>
+          <h3 class="card-title">Dispatch Confirmation</h3>
+          <div class="card-count" id="dispatchConfirmCount">Loading...</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">👥 CRM Level Tasks</h2>
+      
+      <div class="crm-section collapsed" id="priyamCrmSection">
+        <div class="crm-section-header" onclick="toggleCrmSection('priyamCrmSection')">
+            <div class="crm-name">👨‍💼 Priyam Dixit</div>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="crm-grid">
+          <div class="card small loading" id="priyamLevel1Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-3&4%20CRM%20Checking%20Credit%20Status%20&%20Stock%20Status%20-%20Approve%20or%20Hold.html?crm=Priyam%20Dixit'">
+            <div class="card-icon">1️⃣</div>
+            <h3 class="card-title">Credit & Stock Check</h3>
+            <div class="card-count" id="priyamLevel1Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="priyamLevel2Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-5-CRM%20Call%20to%20Dealer%20+%20Updated%20Order%20File%20+%20Sent%20Order%20to%20Owners%20(WhatsApp%20and%20Call).html?crm=Priyam%20Dixit'">
+            <div class="card-icon">2️⃣</div>
+            <h3 class="card-title">Dealer Call & Update</h3>
+            <div class="card-count" id="priyamLevel2Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="priyamLevel3Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-6-TENTATIVE_DISPATCH_DATE.HTML?crm=Priyam%20Dixit'">
+            <div class="card-icon">3️⃣</div>
+            <h3 class="card-title">Tentative Dispatch Date</h3>
+            <div class="card-count" id="priyamLevel3Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="priyamLevel4Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-7-Reminder%20To%20Dispatch%20Department.html?crm=Priyam%20Dixit'">
+            <div class="card-icon">4️⃣</div>
+            <h3 class="card-title">Dispatch Reminder</h3>
+            <div class="card-count" id="priyamLevel4Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="priyamLevel5Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-8-Dealer%20Informed%20About%20Dispatch%20Details.html?crm=Priyam%20Dixit'">
+            <div class="card-icon">5️⃣</div>
+            <h3 class="card-title">Dispatch Info to Dealer</h3>
+            <div class="card-count" id="priyamLevel5Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="priyamLevel6Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/DeliveryConfirmation?crm=Priyam%20Dixit'">
+            <div class="card-icon">6️⃣</div>
+            <h3 class="card-title">Delivery Confirmation</h3>
+            <div class="card-count" id="priyamLevel6Count">Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="crm-section collapsed" id="kalpanaCrmSection">
+        <div class="crm-section-header" onclick="toggleCrmSection('kalpanaCrmSection')">
+            <div class="crm-name">👩‍💼 Km Kalpana</div>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="crm-grid">
+          <div class="card small loading" id="kalpanaLevel1Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-3&4%20CRM%20Checking%20Credit%20Status%20&%20Stock%20Status%20-%20Approve%20or%20Hold.html?crm=Km%20Kalpana'">
+            <div class="card-icon">1️⃣</div>
+            <h3 class="card-title">Credit & Stock Check</h3>
+            <div class="card-count" id="kalpanaLevel1Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="kalpanaLevel2Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-5-CRM%20Call%20to%20Dealer%20+%20Updated%20Order%20File%20+%20Sent%20Order%20to%20Owners%20(WhatsApp%20and%20Call).html?crm=Km%20Kalpana'">
+            <div class="card-icon">2️⃣</div>
+            <h3 class="card-title">Dealer Call & Update</h3>
+            <div class="card-count" id="kalpanaLevel2Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="kalpanaLevel3Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-6-TENTATIVE_DISPATCH_DATE.HTML?crm=Km%20Kalpana'">
+            <div class="card-icon">3️⃣</div>
+            <h3 class="card-title">Tentative Dispatch Date</h3>
+            <div class="card-count" id="kalpanaLevel3Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="kalpanaLevel4Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-7-Reminder%20To%20Dispatch%20Department.html?crm=Km%20Kalpana'">
+            <div class="card-icon">4️⃣</div>
+            <h3 class="card-title">Dispatch Reminder</h3>
+            <div class="card-count" id="kalpanaLevel4Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="kalpanaLevel5Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-8-Dealer%20Informed%20About%20Dispatch%20Details.html?crm=Km%20Kalpana'">
+            <div class="card-icon">5️⃣</div>
+            <h3 class="card-title">Dispatch Info to Dealer</h3>
+            <div class="card-count" id="kalpanaLevel5Count">Loading...</div>
+          </div>
+
+          <div class="card small loading" id="kalpanaLevel6Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/DeliveryConfirmation?crm=Km%20Kalpana'">
+            <div class="card-icon">6️⃣</div>
+            <h3 class="card-title">Delivery Confirmation</h3>
+            <div class="card-count" id="kalpanaLevel6Count">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">💼 Purchase Orders Management</h2>
+      <div class="purchase-grid">
+        <div class="card loading" id="purchaseVerifyCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/POverifier'">
+          <div class="card-icon">🔍</div>
+          <h3 class="card-title">PO Verification</h3>
+          <div class="card-count" id="purchaseVerifyCount">Loading...</div>
+        </div>
+
+        <div class="card loading" id="poSupplierCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/SendToSupplier'">
+          <div class="card-icon">📤</div>
+          <h3 class="card-title">Send PO to Supplier</h3>
+          <div class="card-count" id="poSupplierCount">Loading...</div>
+        </div>
+
+        <div class="card loading" id="getDispatchDateCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/GetDispatchDate'">
+          <div class="card-icon">📅</div>
+          <h3 class="card-title">Get Dispatch Date</h3>
+          <div class="card-count" id="getDispatchDateCount">Loading...</div>
+        </div>
+
+        <div class="card loading" id="dispatchFollowUpCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/DispatchFollowUp'">
+          <div class="card-icon">📞</div>
+          <h3 class="card-title">Dispatch Follow Up</h3>
+          <div class="card-count" id="dispatchFollowUpCount">Loading...</div>
+        </div>
+
+        <div class="card loading" id="getDispatchDetailsCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/GetDispatch&LR'">
+          <div class="card-icon">📋</div>
+          <h3 class="card-title">Get Dispatch & LR Details</h3>
+          <div class="card-count" id="getDispatchDetailsCount">Loading...</div>
+        </div>
+
+        <div class="card" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/WatchOnPurchaseOrders'">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">360° PO Watch</h3>
+          <div class="card-count">Monitor All</div>
+        </div>
+      </div>
+    </section>
+  </div>
+<script>
+const apiMap = {
+  // Sales
+  crmAssign: ['crmAssignCount', 'crmAssignCard'],
+  ownersApproval: ['ownersApprovalCount', 'ownersApprovalCard'],
+  dispatchConfirm: ['dispatchConfirmCount', 'dispatchConfirmCard'],
+
+  // Priyam Dixit
+  priyamLevel1: ['priyamLevel1Count', 'priyamLevel1Card'],
+  priyamLevel2: ['priyamLevel2Count', 'priyamLevel2Card'],
+  priyamLevel3: ['priyamLevel3Count', 'priyamLevel3Card'],
+  priyamLevel4: ['priyamLevel4Count', 'priyamLevel4Card'],
+  priyamLevel5: ['priyamLevel5Count', 'priyamLevel5Card'],
+  priyamLevel6: ['priyamLevel6Count', 'priyamLevel6Card'],
+
+  // Kalpana CRM
+  kalpanaLevel1: ['kalpanaLevel1Count', 'kalpanaLevel1Card'],
+  kalpanaLevel2: ['kalpanaLevel2Count', 'kalpanaLevel2Card'],
+  kalpanaLevel3: ['kalpanaLevel3Count', 'kalpanaLevel3Card'],
+  kalpanaLevel4: ['kalpanaLevel4Count', 'kalpanaLevel4Card'],
+  kalpanaLevel5: ['kalpanaLevel5Count', 'kalpanaLevel5Card'],
+  kalpanaLevel6: ['kalpanaLevel6Count', 'kalpanaLevel6Card'],
+
+  // Purchase Orders
+  purchaseVerify: ['purchaseVerifyCount', 'purchaseVerifyCard'],
+  poSupplier: ['poSupplierCount', 'poSupplierCard'],
+  getDispatchDate: ['getDispatchDateCount', 'getDispatchDateCard'],
+  dispatchFollowUp: ['dispatchFollowUpCount', 'dispatchFollowUpCard'],
+  getDispatchDetails: ['getDispatchDetailsCount', 'getDispatchDetailsCard']
+};
+
+const apiEndpoints = {
+  crmAssign: 'https://script.google.com/macros/s/AKfycbwWKHlGOSpQ5Jcof9bqCDQp-Tnl8J4lCZZT7DnGIEg75DjXYjVrvRbbjefyjdKDDPpi/exec',
+  ownersApproval: 'https://script.google.com/macros/s/AKfycbzg5k4acAaEEmWfIklLzd52NW4xPb1yK4JTp_7m3GegNkDE1fPnqXCYwrVwnA6UzoLg4g/exec',
+  dispatchConfirm: 'https://script.google.com/macros/s/AKfycbzuX9IvIK3aEoXA3TfzBvcAWcav_QhnuenbaYahJdeFL52Mu3KwkMpvIsVJZ7ni23M9Gg/exec',
+
+  priyamLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec?crm=Priyam%20Dixit',
+  priyamLevel2: 'https://script.google.com/macros/s/AKfycbwuVRnAkiEKnTNy6yPBiPxA6BHIim4OlHjx1B3duF0Qt81itDZzgESH_g6pGWDkKhTs/exec?crm=Priyam%20Dixit',
+  priyamLevel3: 'https://script.google.com/macros/s/AKfycbxkduAfhEpEtxKXA_HuIm-lZQj62ZPZwXeZ_Fol-v6VrzfhoXY2lffR64pjPahKV2o/exec?crm=Priyam%20Dixit',
+  priyamLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Priyam%20Dixit',
+  priyamLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Priyam%20Dixit',
+  priyamLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Priyam%20Dixit',
+
+  kalpanaLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec?crm=Km%20Kalpana',
+  kalpanaLevel2: 'https://script.google.com/macros/s/AKfycbwuVRnAkiEKnTNy6yPBiPxA6BHIim4OlHjx1B3duF0Qt81itDZzgESH_g6pGWDkKhTs/exec?crm=Km%20Kalpana',
+  kalpanaLevel3: 'https://script.google.com/macros/s/AKfycbxkduAfhEpEtxKXA_HuIm-lZQj62ZPZwXeZ_Fol-v6VrzfhoXY2lffR64pjPahKV2o/exec?crm=Km%20Kalpana',
+  kalpanaLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Km%20Kalpana',
+  kalpanaLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Km%20Kalpana',
+  kalpanaLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Km%20Kalpana',
+
+  purchaseVerify: 'https://script.google.com/macros/s/AKfycbw2hdmC5ZgntoOVLSSqwwandWQpMEm5EteFACbpQ8-EYyvhytnbJPH2MX-snSTVuNnQyA/exec',
+  poSupplier: 'https://script.google.com/macros/s/AKfycbzwhv2y4qc_mNMa9TUAezVA1EUvHReTkYTCcDj8zVYT1zyb3MSaouMYhvDV3ZcyVr0T/exec',
+  getDispatchDate: 'https://script.google.com/macros/s/AKfycbwyskduPHfiIO3d8tuLY4dA0pbRKQeK1ZUvkUXPJFYs5NEPo8eJBCt_dT2UzuJaBub1/exec',
+  dispatchFollowUp: 'https://script.google.com/macros/s/AKfycbwO1_MihNIerxTsnJQzuEnV2hf4UdaOzAwfDjtEXgQuxrJ499jCd3PB8_9j3kMeTdhX/exec',
+  getDispatchDetails: 'https://script.google.com/macros/s/AKfycbwKB6wQPmrOXmMQ8bM43AMwWgtDobQJ96dPJXntgZpmyJRYogSz9qQHEqIn-OwBY67Qkw/exec'
+};
+
+async function fetchAndUpdateCount(url, countId, cardId) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    let count = 0;
+
+    // Check if data is an object with a 'data' array property
+    if (data && Array.isArray(data.data)) {
+      count = data.data.length;
+    } else if (data && typeof data.count !== 'undefined' && data.count !== null) {
+      // Fallback for APIs that might still return a direct 'count' (though not seen in samples)
+      const parsedCount = parseInt(data.count, 10);
+      if (!isNaN(parsedCount)) {
+        count = parsedCount;
+      }
+    }
+
+    const countElement = document.getElementById(countId);
+    const card = document.getElementById(cardId);
+
+    countElement.textContent = count;
+    card.classList.remove("loading");
+
+    // Fix: Ensure card becomes visible
+    card.style.opacity = '1'; // make it fully visible
+    card.style.transform = 'translateY(0)'; // reset movement
+    card.classList.remove("error-state"); 
+
+    card.style.animation = 'none';
+    card.offsetHeight; // trigger reflow
+    card.style.animation = null;
+
+
+    if (count > 0) {
+      card.classList.add("has-pending");
+      card.classList.remove("all-clear");
+    } else {
+      card.classList.add("all-clear");
+      card.classList.remove("has-pending");
+    }
+  } catch (err) {
+    console.error(`Failed to load ${countId}:`, err);
+    const countElement = document.getElementById(countId);
+    const card = document.getElementById(cardId);
+    countElement.textContent = "Err";
+    card.classList.add("error-state");
+    card.classList.remove("loading");
+    card.classList.remove("has-pending");
+    card.classList.remove("all-clear");
+  }
+}
+
+function refreshAllCounts() {
+  for (const key in apiMap) {
+    const [countId, cardId] = apiMap[key];
+    fetchAndUpdateCount(apiEndpoints[key], countId, cardId);
+  }
+}
+
+// Function to toggle CRM section visibility
+function toggleCrmSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    section.classList.toggle('collapsed');
+    const toggleIcon = section.querySelector('.toggle-icon');
+    if (section.classList.contains('collapsed')) {
+        toggleIcon.textContent = '▶'; // Right arrow for collapsed
+    } else {
+        toggleIcon.textContent = '▼'; // Down arrow for expanded
+    }
+}
+
+
+// Auto refresh every 30 sec
+setInterval(refreshAllCounts, 30000);
+
+// On page load
+refreshAllCounts();
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
+</script>
+</body>
+</html>
