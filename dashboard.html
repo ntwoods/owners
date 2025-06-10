@@ -155,7 +155,7 @@
     .card {
         background: var(--card-light);
         border-radius: 16px;
-        padding: 1.5rem;
+        padding: 1.5rem; /* Default padding for desktop */
         box-shadow: var(--shadow-light);
         cursor: pointer;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -224,7 +224,7 @@
     }
 
     .card-title {
-        font-size: 1.1rem;
+        font-size: 1.1rem; /* Default font size for desktop */
         font-weight: 600;
         margin-bottom: 0.8rem;
         text-align: center;
@@ -242,7 +242,7 @@
     }
 
     .card-count {
-        font-size: 1.3rem;
+        font-size: 1.3rem; /* Default font size for desktop */
         font-weight: 700;
         text-align: center;
         padding: 0.8rem;
@@ -334,15 +334,45 @@
         margin-bottom: 2rem;
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden; /* Needed for the collapsible effect */
+        transition: max-height 0.5s ease-out; /* Smooth transition for collapsing */
     }
+
+    .crm-section.collapsed {
+        max-height: 5rem; /* Approximate height of the header + padding */
+    }
+    
+    .crm-section-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+    }
+
+    .crm-section-header .toggle-icon {
+        position: absolute;
+        right: 1rem;
+        font-size: 1.5rem;
+        color: white;
+        transition: transform 0.3s ease;
+    }
+
+    .crm-section.collapsed .crm-section-header .toggle-icon {
+        transform: rotate(-90deg);
+    }
+
 
     .crm-name {
         font-size: 1.3rem;
         font-weight: 600;
         color: white;
         text-align: center;
-        margin-bottom: 1rem;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        flex-grow: 1; /* Allow name to take available space */
     }
 
     /* Animations */
@@ -379,53 +409,179 @@
     }
 
     /* Responsive Design */
+    /* Mobile-first adjustments for cards and layout */
     @media (max-width: 768px) {
         .container {
             padding: 1rem;
         }
 
-        .dashboard-grid,
-        .crm-grid,
-        .purchase-grid {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .card {
+        /* Adjust header and general text for smaller screens */
+        .header {
             padding: 1rem;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
         }
 
-        .header-content {
-            flex-direction: column;
-            text-align: center;
+        .theme-toggle {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
         }
 
         .section-title {
             font-size: 1.3rem;
+            margin-bottom: 1rem;
         }
 
         .crm-name {
             font-size: 1.1rem;
         }
-    }
 
-    @media (max-width: 480px) {
-        .card {
+        /* Horizontal scrolling for card grids */
+        .dashboard-grid,
+        .purchase-grid,
+        .crm-grid {
+            grid-template-columns: unset; /* Override grid columns */
+            display: flex; /* Use flexbox for horizontal layout */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            scroll-snap-type: x mandatory; /* Optional: for snapping effect */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            padding-bottom: 0.5rem; /* Space for scrollbar if needed */
+            margin-bottom: 1rem;
+            gap: 1rem; /* Adjust gap for mobile horizontal scroll */
+        }
+
+        .dashboard-grid > .card,
+        .purchase-grid > .card,
+        .crm-grid > .card {
+            flex: 0 0 auto; /* Prevent cards from shrinking */
+            width: 70%; /* Cards take 70% of viewport width */
+            max-width: 250px; /* Cap max width for consistency */
+            scroll-snap-align: start; /* Snap to start of card */
+            margin-right: 0.8rem; /* Space between cards */
+            padding: 1rem; /* Smaller padding for cards */
+            border-radius: 12px; /* Slightly smaller border-radius */
+        }
+
+        /* Ensure small cards are even smaller */
+        .crm-grid > .card.small {
+            width: 65%; /* CRM small cards a bit narrower */
+            max-width: 200px;
             padding: 0.8rem;
         }
 
+        /* Adjust card content for mobile */
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .card.small .card-icon {
+            width: 35px;
+            height: 35px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
         .card-title {
-            font-size: 0.95rem;
+            font-size: 0.95rem; /* Smaller title font size */
+            margin-bottom: 0.5rem;
+        }
+
+        .card.small .card-title {
+            font-size: 0.85rem;
         }
 
         .card-count {
-            font-size: 1.1rem;
+            font-size: 1.1rem; /* Smaller count font size */
+            padding: 0.6rem;
+            margin-top: 0.6rem;
+        }
+
+        .card.small .card-count {
+            font-size: 0.95rem;
+            padding: 0.5rem;
+        }
+
+        /* Collapsible CRM sections */
+        .crm-section {
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .crm-section.collapsed {
+            max-height: 4.5rem; /* Even smaller collapsed height */
+        }
+
+        .crm-section-header {
+            padding-bottom: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .crm-section-header .toggle-icon {
+            font-size: 1.2rem;
         }
     }
+
+    @media (max-width: 480px) {
+        .dashboard-grid > .card,
+        .purchase-grid > .card,
+        .crm-grid > .card {
+            width: 85%; /* Even wider cards on very small screens to ensure content fits */
+            max-width: 220px; /* Adjust max-width accordingly */
+            margin-right: 0.6rem;
+            padding: 0.8rem;
+        }
+        .crm-grid > .card.small {
+            width: 80%; /* Small CRM cards on very small screens */
+            max-width: 180px;
+            padding: 0.6rem;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+        .card.small .card-icon {
+            width: 30px;
+            height: 30px;
+            font-size: 0.8rem;
+        }
+        .card-title {
+            font-size: 0.85rem;
+        }
+        .card.small .card-title {
+            font-size: 0.75rem;
+        }
+        .card-count {
+            font-size: 1rem;
+            padding: 0.5rem;
+        }
+        .card.small .card-count {
+            font-size: 0.9rem;
+        }
+        .logo {
+            font-size: 1.4rem;
+        }
+        .theme-toggle {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        .section-title {
+            font-size: 1.1rem;
+        }
+        .crm-name {
+            font-size: 1rem;
+        }
+        .crm-section.collapsed {
+            max-height: 4rem; /* Further reduce collapsed height for very small screens */
+        }
+    }
+
 
     /* Animation delays for staggered loading */
     .card:nth-child(1) { animation-delay: 0.1s; }
@@ -475,8 +631,11 @@
     <section class="section">
       <h2 class="section-title">👥 CRM Level Tasks</h2>
       
-      <div class="crm-section">
-        <div class="crm-name">👨‍💼 Priyam Dixit</div>
+      <div class="crm-section collapsed" id="priyamCrmSection">
+        <div class="crm-section-header" onclick="toggleCrmSection('priyamCrmSection')">
+            <div class="crm-name">🙍‍♀️ Priyam Dixit</div>
+            <span class="toggle-icon">▼</span>
+        </div>
         <div class="crm-grid">
           <div class="card small loading" id="priyamLevel1Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-3&4%20CRM%20Checking%20Credit%20Status%20&%20Stock%20Status%20-%20Approve%20or%20Hold.html?crm=Priyam%20Dixit'">
             <div class="card-icon">1️⃣</div>
@@ -516,8 +675,11 @@
         </div>
       </div>
 
-      <div class="crm-section">
-        <div class="crm-name">👩‍💼 Km Kalpana</div>
+      <div class="crm-section collapsed" id="kalpanaCrmSection">
+        <div class="crm-section-header" onclick="toggleCrmSection('kalpanaCrmSection')">
+            <div class="crm-name">🙍‍♀️ Km Kalpana</div>
+            <span class="toggle-icon">▼</span>
+        </div>
         <div class="crm-grid">
           <div class="card small loading" id="kalpanaLevel1Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/LEVEL-3&4%20CRM%20Checking%20Credit%20Status%20&%20Stock%20Status%20-%20Approve%20or%20Hold.html?crm=Km%20Kalpana'">
             <div class="card-icon">1️⃣</div>
@@ -714,6 +876,19 @@ function refreshAllCounts() {
     fetchAndUpdateCount(apiEndpoints[key], countId, cardId);
   }
 }
+
+// Function to toggle CRM section visibility
+function toggleCrmSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    section.classList.toggle('collapsed');
+    const toggleIcon = section.querySelector('.toggle-icon');
+    if (section.classList.contains('collapsed')) {
+        toggleIcon.textContent = '▶'; // Right arrow for collapsed
+    } else {
+        toggleIcon.textContent = '▼'; // Down arrow for expanded
+    }
+}
+
 
 // Auto refresh every 30 sec
 setInterval(refreshAllCounts, 30000);
