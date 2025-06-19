@@ -747,6 +747,12 @@
           <div class="card-count" id="dispatchFollowUpCount">Loading...</div>
         </div>
 
+        <div class="card loading" id="dispatchFollowUpADayBeforeCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/DispatchFollowUpADayBefore'">
+          <div class="card-icon">📞</div>
+          <h3 class="card-title">Dispatch Follow Up A Day Before</h3>
+          <div class="card-count" id="dispatchFollowUpADayBeforeCount">Loading...</div>
+        </div>
+        
         <div class="card loading" id="getDispatchDetailsCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/GetDispatch&LR'">
           <div class="card-icon">📋</div>
           <h3 class="card-title">Get Dispatch & LR Details</h3>
@@ -789,6 +795,7 @@ const apiMap = {
   poSupplier: ['poSupplierCount', 'poSupplierCard'],
   getDispatchDate: ['getDispatchDateCount', 'getDispatchDateCard'],
   dispatchFollowUp: ['dispatchFollowUpCount', 'dispatchFollowUpCard'],
+  dispatchFollowUpADayBefore: ['dispatchFollowUpADayBeforeCount', 'dispatchFollowUpADayBeforeCard'],  
   getDispatchDetails: ['getDispatchDetailsCount', 'getDispatchDetailsCard']
 };
 
@@ -815,6 +822,7 @@ const apiEndpoints = {
   poSupplier: 'https://script.google.com/macros/s/AKfycbzwhv2y4qc_mNMa9TUAezVA1EUvHReTkYTCcDj8zVYT1zyb3MSaouMYhvDV3ZcyVr0T/exec',
   getDispatchDate: 'https://script.google.com/macros/s/AKfycbwyskduPHfiIO3d8tuLY4dA0pbRKQeK1ZUvkUXPJFYs5NEPo8eJBCt_dT2UzuJaBub1/exec',
   dispatchFollowUp: 'https://script.google.com/macros/s/AKfycbwO1_MihNIerxTsnJQzuEnV2hf4UdaOzAwfDjtEXgQuxrJ499jCd3PB8_9j3kMeTdhX/exec',
+  dispatchFollowUpADayBefore: 'https://script.google.com/macros/s/AKfycbynKuCKar5-CgsMfOBwCZm0swnfqxsWvKylbrj8QwLDoHlTNMSoCf1YowAVPAm1EHrOWQ/exec',  
   getDispatchDetails: 'https://script.google.com/macros/s/AKfycbwKB6wQPmrOXmMQ8bM43AMyWgtDobQJ96dPJXntgZpmyJRYogSz9qQHEqIn-OwBY67Qkw/exec'
 };
 
