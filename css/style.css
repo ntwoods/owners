@@ -159,9 +159,10 @@ body.dark-mode .sidebar {
     display: block;
     margin: 0.5rem; /* Keeps existing side margins */
     margin-bottom: 1rem; /* Increase this value for more vertical space */
-    padding: 5px;      
+    padding: 5px;
+    width: 70%;
     border-radius: 5px;     
-    background: orange;         
+    background: #1a2733;         
     cursor: pointer;
     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.6);     
     color: white;           
