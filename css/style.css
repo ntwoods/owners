@@ -156,6 +156,7 @@ body.dark-mode .sidebar {
     margin-bottom: 0.5rem;
 }
 .sidebar-btn {
+    display: block;
     margin: 0.5rem; /* Keeps existing side margins */
     margin-bottom: 3rem; /* Increase this value for more vertical space */
     padding: 5px;      
