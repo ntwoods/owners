@@ -11,6 +11,7 @@ const apiMap = {
   priyamLevel4: ['priyamLevel4Count', 'priyamLevel4Card'],
   priyamLevel5: ['priyamLevel5Count', 'priyamLevel5Card'],
   priyamLevel6: ['priyamLevel6Count', 'priyamLevel6Card'],
+  priyamLevel7: ['priyamLevel7Count', 'priyamLevel7Card'],  
 
   // Kalpana CRM
   kalpanaLevel1: ['kalpanaLevel1Count', 'kalpanaLevel1Card'],
@@ -19,7 +20,8 @@ const apiMap = {
   kalpanaLevel4: ['kalpanaLevel4Count', 'kalpanaLevel4Card'],
   kalpanaLevel5: ['kalpanaLevel5Count', 'kalpanaLevel5Card'],
   kalpanaLevel6: ['kalpanaLevel6Count', 'kalpanaLevel6Card'],
-
+  kalpanaLevel7: ['kalpanaLevel7Count', 'kalpanaLevel7Card'],   
+  
   // Akansha Jain CRM
   akanshaLevel1: ['akanshaLevel1Count', 'akanshaLevel1Card'],
   akanshaLevel2: ['akanshaLevel2Count', 'akanshaLevel2Card'],
@@ -27,6 +29,7 @@ const apiMap = {
   akanshaLevel4: ['akanshaLevel4Count', 'akanshaLevel4Card'],
   akanshaLevel5: ['akanshaLevel5Count', 'akanshaLevel5Card'],
   akanshaLevel6: ['akanshaLevel6Count', 'akanshaLevel6Card'],
+  akanshaLevel7: ['akanshaLevel7Count', 'akanshaLevel7Card'],    
 
   // Mahima Agarwal CRM
   mahimaLevel1: ['mahimaLevel1Count', 'mahimaLevel1Card'],
@@ -35,6 +38,8 @@ const apiMap = {
   mahimaLevel4: ['mahimaLevel4Count', 'mahimaLevel4Card'],
   mahimaLevel5: ['mahimaLevel5Count', 'mahimaLevel5Card'],
   mahimaLevel6: ['mahimaLevel6Count', 'mahimaLevel6Card'],
+  mahimaLevel7: ['mahimaLevel7Count', 'mahimaLevel7Card'],  
+  
 
   // Purchase Orders
   purchaseVerify: ['purchaseVerifyCount', 'purchaseVerifyCard'],
@@ -42,7 +47,11 @@ const apiMap = {
   getDispatchDate: ['getDispatchDateCount', 'getDispatchDateCard'],
   dispatchFollowUp: ['dispatchFollowUpCount', 'dispatchFollowUpCard'],
   dispatchFollowUpADayBefore: ['dispatchFollowUpADayBeforeCount', 'dispatchFollowUpADayBeforeCard'],  
-  getDispatchDetails: ['getDispatchDetailsCount', 'getDispatchDetailsCard']
+  getDispatchDetails: ['getDispatchDetailsCount', 'getDispatchDetailsCard'],
+  manageHoldPODetails: ['manageHoldPOCount', 'manageHoldPOCard'],
+  acPortals: ['acPortalCount', 'acPortal'],  
+  receivedAtGodowns: ['receivedAtGodownCount', 'receivedAtGodown']
+  
 };
 
 const apiEndpoints = {
@@ -57,6 +66,8 @@ const apiEndpoints = {
   priyamLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Priyam%20Dixit',
   priyamLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Priyam%20Dixit',
   priyamLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Priyam%20Dixit',
+  priyamLevel7: 'https://script.google.com/macros/s/AKfycbx8Ourjem3diO9CTDl_wdGuJXSksFUImwIvq2gB1tFjeOUdNkLDdUso8he0-6CTlSJc/exec?crm=Priyam%20Dixit',  
+  
 
   // Kalpana CRM
   kalpanaLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec?crm=Km%20Kalpana',
@@ -65,6 +76,7 @@ const apiEndpoints = {
   kalpanaLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Km%20Kalpana',
   kalpanaLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Km%20Kalpana',
   kalpanaLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Km%20Kalpana',
+  kalpanaLevel7: 'https://script.google.com/macros/s/AKfycbx8Ourjem3diO9CTDl_wdGuJXSksFUImwIvq2gB1tFjeOUdNkLDdUso8he0-6CTlSJc/exec?crm=Km%20Kalpana',    
 
   // Akansha Jain CRM
   akanshaLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec?crm=Akansha%20Jain',
@@ -73,6 +85,7 @@ const apiEndpoints = {
   akanshaLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Akansha%20Jain',
   akanshaLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Akansha%20Jain',
   akanshaLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Akansha%20Jain',
+  akanshaLevel7: 'https://script.google.com/macros/s/AKfycbx8Ourjem3diO9CTDl_wdGuJXSksFUImwIvq2gB1tFjeOUdNkLDdUso8he0-6CTlSJc/exec?crm=Akansha%20Jain',      
 
   // Mahima Agarwal CRM
   mahimaLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec?crm=Mahima%20Agarwal',
@@ -81,6 +94,7 @@ const apiEndpoints = {
   mahimaLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Mahima%20Agarwal',
   mahimaLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Mahima%20Agarwal',
   mahimaLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Mahima%20Agarwal',
+  mahimaLevel7: 'https://script.google.com/macros/s/AKfycbx8Ourjem3diO9CTDl_wdGuJXSksFUImwIvq2gB1tFjeOUdNkLDdUso8he0-6CTlSJc/exec?crm=Mahima%20Agarwal',      
 
   // Purchase Orders
   purchaseVerify: 'https://script.google.com/macros/s/AKfycbw2hdmC5ZgntoOVLSSqwwandWQpMEm5EteFACbpQ8-EYyvhytnbJPH2MX-snSTVuNnQyA/exec',
@@ -88,7 +102,11 @@ const apiEndpoints = {
   getDispatchDate: 'https://script.google.com/macros/s/AKfycbwyskduPHfiIO3d8tuLY4dA0pbRKQeK1ZUvkUXPJFYs5NEPo8eJBCt_dT2UzuJaBub1/exec',
   dispatchFollowUp: 'https://script.google.com/macros/s/AKfycbwO1_MihNIerxTsnJQzuEnV2hf4UdaOzAwfDjtEXgQuxrJ499jCd3PB8_9j3kMeTdhX/exec',
   dispatchFollowUpADayBefore: 'https://script.google.com/macros/s/AKfycbynKuCKar5-CgsMfOBwCZm0swnfqxsWvKylbrj8QwLDoHlTNMSoCf1YowAVPAm1EHrOWQ/exec',  
-  getDispatchDetails: 'https://script.google.com/macros/s/AKfycbwKB6wQPmrOXmMQ8bM43AMyWgtDobQJ96dPJXntgZpmyJRYogSz9qQHEqIn-OwBY67Qkw/exec'
+  getDispatchDetails: 'https://script.google.com/macros/s/AKfycbwKB6wQPmrOXmMQ8bM43AMyWgtDobQJ96dPJXntgZpmyJRYogSz9qQHEqIn-OwBY67Qkw/exec',
+  manageHoldPODetails: 'https://script.google.com/macros/s/AKfycbxmknmN_A0jdyu8B489qcb1UfVSwyG7sGvRs3LPCj6647GyYU2oL0sIf7GaKuLodYfFeg/exec',
+  acPortals: 'https://script.google.com/macros/s/AKfycbwYVf_pKrNX6WWyYF6lBSwsQwB7AIZcgAjoXU1PBR4vmTeb48huKWtagXHJXiDcjeSibw/exec',
+  receivedAtGodowns: 'https://script.google.com/macros/s/AKfycbx8G0LTKVI158PxrnxuHZsrWduM6tIverj2O-8cnp_hW_P_zXJ2nfr0uH6L882TyeSM/exec' 
+  
 };
 
 async function fetchAndUpdateCount(url, countId, cardId) {
