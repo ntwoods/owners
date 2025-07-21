@@ -326,19 +326,20 @@
                     </div>
                 </div>
             </div>
-                <a href="https://ntwoods.github.io/PurchaseOrders/manageHoldPO" target="_blank" class="block">
-                    <div class="hold-po-card bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-300">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Hold PO</p>
-                                <p class="text-2xl font-bold text-red-600 dark:text-red-400 mt-1">--</p>
-                            </div>
-                            <div class="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-400"></i>
-                            </div>
+            <a href="https://ntwoods.github.io/PurchaseOrders/manageHoldPO" target="_blank" class="block">
+                <div class="hold-po-card bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Hold PO</p>
+                            <p id="hold-po-count" class="text-2xl font-bold text-red-600 dark:text-red-400 mt-1">--</p>
+                        </div>
+                        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-400"></i>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
+
          
            </div>      
       
@@ -424,7 +425,8 @@
             const totalPosCountElem = document.getElementById('total-pos-count');
             const pendingPosCountElem = document.getElementById('pending-pos-count');
             const completedPosCountElem = document.getElementById('completed-pos-count');
-            const holdPoCountElem = document.querySelector('.hold-po-card .text-2xl'); // This one already uses a specific class
+            const holdPoCountElem = document.getElementById('hold-po-count');
+
 
             if (totalPosCountElem) totalPosCountElem.textContent = data.totalOrders !== undefined ? data.totalOrders : 'N/A';
             if (pendingPosCountElem) pendingPosCountElem.textContent = data.pendingOrders !== undefined ? data.pendingOrders : 'N/A';
@@ -445,6 +447,8 @@
         if (holdPoCountElem) holdPoCountElem.textContent = '?';
     }
 }
+    window.addEventListener('DOMContentLoaded', fetchOverallPOStats);
+    
   </script>
   <script src="js/script.js"></script>
 </body>
