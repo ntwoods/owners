@@ -107,6 +107,7 @@ const apiEndpoints = {
   acPortals: 'https://script.google.com/macros/s/AKfycbwYVf_pKrNX6WWyYF6lBSwsQwB7AIZcgAjoXU1PBR4vmTeb48huKWtagXHJXiDcjeSibw/exec',
   receivedAtGodowns: 'https://script.google.com/macros/s/AKfycbx8G0LTKVI158PxrnxuHZsrWduM6tIverj2O-8cnp_hW_P_zXJ2nfr0uH6L882TyeSM/exec' 
   
+  
 };
 
 async function fetchAndUpdateCount(url, countId, cardId) {
@@ -234,6 +235,20 @@ function setupSmoothScrollAndActiveLinks() {
 }
 
 // Add this function to your script.js file
+
+// In the main part of your script, or in a function that loads all data
+
+// For Priyam Dixit
+updateL1TileHighlights('priyam', apiEndpoints.priyamLevel1, 'priyamLevel1Card');
+
+// For Kalpana CRM
+updateL1TileHighlights('kalpana', apiEndpoints.kalpanaLevel1, 'kalpanaLevel1Card');
+
+// For Akansha Jain CRM
+updateL1TileHighlights('akansha', apiEndpoints.akanshaLevel1, 'akanshaLevel1Card');
+
+// For Mahima Agarwal CRM
+updateL1TileHighlights('mahima', apiEndpoints.mahimaLevel1, 'mahimaLevel1Card');
 
 function updateL1TileHighlights(crm, apiEndpoint, cardId) {
   // Fetch data from the L1 API endpoint for the CRM
