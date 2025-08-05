@@ -233,6 +233,58 @@ function setupSmoothScrollAndActiveLinks() {
   });
 }
 
+// Add this function to your script.js file
+
+function updateL1TileHighlights(crm, apiEndpoint, cardId) {
+  // Fetch data from the L1 API endpoint for the CRM
+  fetch(apiEndpoint)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const orders = data.orders; // Assuming the API returns a 'orders' array
+      const card = document.getElementById(cardId);
+
+      // Reset any previous highlight classes
+      card.classList.remove('red', 'yellow', 'green');
+
+      if (!orders || orders.length === 0) {
+        // Case: No orders on L1, show green highlight
+        card.classList.add('green');
+        document.getElementById(`${crm}Level1Count`).textContent = 0;
+      } else {
+        // Case: Check for overdue orders
+        let isOverdue = false;
+        const now = new Date();
+
+        for (const order of orders) {
+          const timestamp = new Date(order.timestamp);
+          const deadline = new Date(timestamp.getTime() + 4 * 60 * 60 * 1000); // Add 4 hours
+          if (now > deadline) {
+            isOverdue = true;
+            break; // Found an overdue order, no need to check others
+          }
+        }
+
+        if (isOverdue) {
+          // Case: At least one order is overdue, show red highlight
+          card.classList.add('red');
+        } else {
+          // Case: All orders are within the deadline, show yellow highlight
+          card.classList.add('yellow');
+        }
+        document.getElementById(`${crm}Level1Count`).textContent = orders.length;
+      }
+    })
+    .catch(error => {
+      console.error(`Error fetching data for ${crm} L1:`, error);
+      // You may want to add a default highlight or error state here
+    });
+}
+
 
 // Auto refresh every 30 sec
 setInterval(refreshAllCounts, 30000);
