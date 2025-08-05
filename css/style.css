@@ -715,3 +715,15 @@ body.dark-mode .crm-name {
         font-size: 1rem;
     }
 }
+/* Highlight styles for the CRM cards */
+.red {
+  background-color: var(--error);
+}
+
+.yellow {
+  background-color: var(--warning);
+}
+
+.green {
+  background-color: var(--success);
+}
