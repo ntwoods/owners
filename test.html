@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NT Woods - Owner Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">🌲 NT Woods</div>
+      <button class="theme-toggle" onclick="toggleDarkMode()">
+        🌓 Toggle Theme
+      </button>
+    </div>
+  </header>
+
+  <div class="main-wrapper">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://shorturl.at/DxRig'" class="sidebar-btn">🗂️PROCESS MASTER SHEET</a>
+      </nav>
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/processCoordinator/scotPC.html'" class="sidebar-btn">🥃 SCOT PORTAL</a>
+      </nav>      
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/rateList/index'" class="sidebar-btn">➕ADD RATES</a>
+      </nav>
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/rateList/viewRate'" class="sidebar-btn">🪟VIEW RATES</a>
+      </nav>      
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/ordertodispatch/orderPunch'" class="sidebar-btn">📤SALES ORDER PUNCH</a>
+      </nav>
+      <nav class="sidebar-nav">        
+          <a onclick="location.href='https://shorturl.at/OIk9L'" class="sidebar-btn">🧦 IMS NT WOODS</a>        
+      </nav>              
+      <nav class="sidebar-nav">        
+          <a onclick="location.href='https://docs.google.com/spreadsheets/d/13tKeARKt4U1fteW6N31nRDfY3zWX4aEqnLrv-8eKpiE/edit?gid=724087621#gid=724087621'" class="sidebar-btn">🌲 IMS NEXTREE</a>        
+      </nav>                    
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://shorturl.at/0ZYef'" class="sidebar-btn">🧾 OMS NT WOODS</a>
+      </nav>          
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://docs.google.com/spreadsheets/d/1zS2mjPaC-w-5f6qu-2sd15I_c_KqTgNLtJ5J8gKHSdY/edit?gid=763969696#gid=763969696'" class="sidebar-btn">🧾 OMS NEXTREE</a>
+      </nav>          
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/other/viewSecurityCheques'" class="sidebar-btn">🏦 Security Cheques View</a>
+      </nav>      
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/other/securityCheque'" class="sidebar-btn">🪪 Security Cheques Entry</a>
+      </nav>
+
+      <nav class="sidebar-nav">                                
+          <a onclick="location.href='https://ntwoods.github.io/PurchaseOrders/poManagementDashboard'" class="sidebar-btn">📦 Purchase Portal</a>                                             
+      </nav>
+      <nav class="sidebar-nav">                                
+          <a onclick="location.href='https://shorturl.at/EK0Xe'" class="sidebar-btn">🈸 Specifications Sheet</a>                                             
+      </nav>
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/ordertodispatch/O2Djourney.html'" class="sidebar-btn">🐦‍🔥 O2D Journey</a>
+      </nav>
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/ordertodispatch/completedSalesOrders.html'" class="sidebar-btn">🛒 Completed SO</a>
+      </nav>
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/PurchaseOrders/crmPurchaseReqView.html'" class="sidebar-btn">🧾 CRM Pur Req</a>
+      </nav>          
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://lookerstudio.google.com/reporting/1cf4b21f-54d8-4649-908b-42caae64ee62/page/page_12345'" class="sidebar-btn">🏁COMMON CHECKLIST</a>
+      </nav>      
+      <nav class="sidebar-nav">
+          <a onclick="location.href='https://ntwoods.github.io/processCoordinator/dashboard.html'" class="sidebar-btn">🖥️Sonakshi Ji's Portal</a>
+      </nav>
+      <nav class="sidebar-nav">                                
+          <a onclick="location.href='https://ntwoods.github.io/ordertodispatch/DispatchTeam.html'" class="sidebar-btn">✈️ DISPATCH OUTWARD</a>                                             
+      </nav>
+      <nav class="sidebar-nav">                                
+          <a onclick="location.href='https://ntwoods.github.io/PurchaseOrders/ReceivedAtGodown'" class="sidebar-btn">📨 DISPATCH INWARD</a>                                             
+      </nav>     
+      <nav class="sidebar-nav">                                
+          <a onclick="location.href='https://ntwoods.github.io/PurchaseOrders/AcDashboard'" class="sidebar-btn">💵Accounts Portal</a>                                             
+      </nav>     
+    </aside>
+    <div class="content-area">
+      <section class="section" id="sales-management">
+        <h2 class="section-title">📋 Sales Orders Management</h2>
+        <div class="dashboard-grid">
+          <div class="card loading" id="crmAssignCard" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L00.html?power=ea'">
+            <div class="card-icon">🎯</div>
+            <h3 class="card-title">CRM Not Assigned</h3>
+            <div class="card-count" id="crmAssignCount">Loading...</div>
+          </div>
+
+          <div class="card loading" id="ownersApprovalCard" onclick="location.href='https://ntwoods.github.io/ordertodispatch/OwnerApprovalSO.html'">
+            <div class="card-icon">✅</div>
+            <h3 class="card-title">Owner's Approval</h3>
+            <div class="card-count" id="ownersApprovalCount">Loading...</div>
+          </div>
+
+          <div class="card loading" id="dispatchConfirmCard" onclick="location.href='https://ntwoods.github.io/ordertodispatch/DispatchTeam.html'">
+            <div class="card-icon">🚛</div>
+            <h3 class="card-title">Dispatch Confirmation</h3>
+            <div class="card-count" id="dispatchConfirmCount">Loading...</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="crm-tasks">
+        <h2 class="section-title">👥 CRM Level Tasks</h2>
+        
+        <div class="crm-section collapsed" id="priyamCrmSection">
+          <div class="crm-section-header" onclick="toggleCrmSection('priyamCrmSection')">
+              <div class="crm-name">🙍‍♀️ Priyam Dixit</div>
+              <span class="toggle-icon">▼</span>
+          </div>
+          <div class="crm-grid">
+            <div class="card small loading" id="priyamLevel1Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L1.html?crm=Priyam%20Dixit'">
+              <div class="card-icon">1️⃣</div>
+              <h3 class="card-title">Credit & Stock Check</h3>
+              <div class="card-count" id="priyamLevel1Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="priyamLevel2Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L2.html?crm=Priyam%20Dixit'">
+              <div class="card-icon">2️⃣</div>
+              <h3 class="card-title">Dealer Call & Update</h3>
+              <div class="card-count" id="priyamLevel2Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="priyamLevel3Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L3.html?crm=Priyam%20Dixit'">
+              <div class="card-icon">3️⃣</div>
+              <h3 class="card-title">Tentative Dispatch Date</h3>
+              <div class="card-count" id="priyamLevel3Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="priyamLevel4Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L4.html?crm=Priyam%20Dixit'">
+              <div class="card-icon">4️⃣</div>
+              <h3 class="card-title">Dispatch Reminder</h3>
+              <div class="card-count" id="priyamLevel4Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="priyamLevel5Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L5.html?crm=Priyam%20Dixit'">
+              <div class="card-icon">5️⃣</div>
+              <h3 class="card-title">Dispatch Info to Dealer</h3>
+              <div class="card-count" id="priyamLevel5Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="priyamLevel6Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L6.html?crm=Priyam%20Dixit'">
+              <div class="card-icon">6️⃣</div>
+              <h3 class="card-title">Delivery Confirmation</h3>
+              <div class="card-count" id="priyamLevel6Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="priyamLevel7Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L7.html?crm=Priyam%20Dixit'">
+              <div class="card-icon">7️⃣</div>
+              <h3 class="card-title">Hold Order Management</h3>
+              <div class="card-count" id="priyamLevel7Count">Loading...</div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="crm-section collapsed" id="kalpanaCrmSection">
+          <div class="crm-section-header" onclick="toggleCrmSection('kalpanaCrmSection')">
+              <div class="crm-name">🙍‍♀️ Km Kalpana</div>
+              <span class="toggle-icon">▼</span>
+          </div>
+          <div class="crm-grid">
+            <div class="card small loading" id="kalpanaLevel1Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L1.html?crm=Km%20Kalpana'">
+              <div class="card-icon">1️⃣</div>
+              <h3 class="card-title">Credit & Stock Check</h3>
+              <div class="card-count" id="kalpanaLevel1Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="kalpanaLevel2Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L2.html?crm=Km%20Kalpana'">
+              <div class="card-icon">2️⃣</div>
+              <h3 class="card-title">Dealer Call & Update</h3>
+              <div class="card-count" id="kalpanaLevel2Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="kalpanaLevel3Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L3.html?crm=Km%20Kalpana'">
+              <div class="card-icon">3️⃣</div>
+              <h3 class="card-title">Tentative Dispatch Date</h3>
+              <div class="card-count" id="kalpanaLevel3Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="kalpanaLevel4Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L4.html?crm=Km%20Kalpana'">
+              <div class="card-icon">4️⃣</div>
+              <h3 class="card-title">Dispatch Reminder</h3>
+              <div class="card-count" id="kalpanaLevel4Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="kalpanaLevel5Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L5.html?crm=Km%20Kalpana'">
+              <div class="card-icon">5️⃣</div>
+              <h3 class="card-title">Dispatch Info to Dealer</h3>
+              <div class="card-count" id="kalpanaLevel5Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="kalpanaLevel6Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L6.html?crm=Km%20Kalpana'">
+              <div class="card-icon">6️⃣</div>
+              <h3 class="card-title">Delivery Confirmation</h3>
+              <div class="card-count" id="kalpanaLevel6Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="kalpanaLevel7Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L7.html?crm=Km%20Kalpana'">
+              <div class="card-icon">7️⃣</div>
+              <h3 class="card-title">Hold Order Management</h3>
+              <div class="card-count" id="kalpanaLevel7Count">Loading...</div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="crm-section collapsed" id="akanshaCrmSection">
+          <div class="crm-section-header" onclick="toggleCrmSection('akanshaCrmSection')">
+              <div class="crm-name">🙍‍♀️ Akansha Jain</div>
+              <span class="toggle-icon">▼</span>
+          </div>
+          <div class="crm-grid">
+            <div class="card small loading" id="akanshaLevel1Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L1.html?crm=Akansha%20Jain'">
+              <div class="card-icon">1️⃣</div>
+              <h3 class="card-title">Credit & Stock Check</h3>
+              <div class="card-count" id="akanshaLevel1Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="akanshaLevel2Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L2.html?crm=Akansha%20Jain'">
+              <div class="card-icon">2️⃣</div>
+              <h3 class="card-title">Dealer Call & Update</h3>
+              <div class="card-count" id="akanshaLevel2Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="akanshaLevel3Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L3.html?crm=Akansha%20Jain'">
+              <div class="card-icon">3️⃣</div>
+              <h3 class="card-title">Tentative Dispatch Date</h3>
+              <div class="card-count" id="akanshaLevel3Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="akanshaLevel4Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L4.html?crm=Akansha%20Jain'">
+              <div class="card-icon">4️⃣</div>
+              <h3 class="card-title">Dispatch Reminder</h3>
+              <div class="card-count" id="akanshaLevel4Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="akanshaLevel5Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L5.html?crm=Akansha%20Jain'">
+              <div class="card-icon">5️⃣</div>
+              <h3 class="card-title">Dispatch Info to Dealer</h3>
+              <div class="card-count" id="akanshaLevel5Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="akanshaLevel6Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L6.html?crm=Akansha%20Jain'">
+              <div class="card-icon">6️⃣</div>
+              <h3 class="card-title">Delivery Confirmation</h3>
+              <div class="card-count" id="akanshaLevel6Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="akanshaLevel7Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L7.html?crm=Akansha%20Jain'">
+              <div class="card-icon">7️⃣</div>
+              <h3 class="card-title">Hold Order Management</h3>
+              <div class="card-count" id="akanshaLevel7Count">Loading...</div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="crm-section collapsed" id="mahimaCrmSection">
+          <div class="crm-section-header" onclick="toggleCrmSection('mahimaCrmSection')">
+              <div class="crm-name">🙍‍♀️ Mahima Agarwal</div>
+              <span class="toggle-icon">▼</span>
+          </div>
+          <div class="crm-grid">
+            <div class="card small loading" id="mahimaLevel1Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L1.html?crm=Mahima%20Agarwal'">
+              <div class="card-icon">1️⃣</div>
+              <h3 class="card-title">Credit & Stock Check</h3>
+              <div class="card-count" id="mahimaLevel1Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="mahimaLevel2Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L2.html?crm=Mahima%20Agarwal'">
+              <div class="card-icon">2️⃣</div>
+              <h3 class="card-title">Dealer Call & Update</h3>
+              <div class="card-count" id="mahimaLevel2Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="mahimaLevel3Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L3.html?crm=Mahima%20Agarwal'">
+              <div class="card-icon">3️⃣</div>
+              <h3 class="card-title">Tentative Dispatch Date</h3>
+              <div class="card-count" id="mahimaLevel3Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="mahimaLevel4Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L4.html?crm=Mahima%20Agarwal'">
+              <div class="card-icon">4️⃣</div>
+              <h3 class="card-title">Dispatch Reminder</h3>
+              <div class="card-count" id="mahimaLevel4Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="mahimaLevel5Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L5.html?crm=Mahima%20Agarwal'">
+              <div class="card-icon">5️⃣</div>
+              <h3 class="card-title">Dispatch Info to Dealer</h3>
+              <div class="card-count" id="mahimaLevel5Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="mahimaLevel6Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L6.html?crm=Mahima%20Agarwal'">
+              <div class="card-icon">6️⃣</div>
+              <h3 class="card-title">Delivery Confirmation</h3>
+              <div class="card-count" id="mahimaLevel6Count">Loading...</div>
+            </div>
+
+            <div class="card small loading" id="mahimaLevel7Card" onclick="location.href='https://ntwoods.github.io/ordertodispatch/L7.html?crm=Mahima%20Agarwal'">
+              <div class="card-icon">7️⃣</div>
+              <h3 class="card-title">Hold Order Management</h3>
+              <div class="card-count" id="mahimaLevel7Count">Loading...</div>
+            </div>
+
+            
+          </div>
+        </div>
+      </section>
+
+        <div class="p-6">
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-300">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total POs</p>
+                        <p id="total-pos-count" class="text-2xl font-bold text-gray-800 dark:text-white mt-1">--</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-file-alt text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="https://ntwoods.github.io/PurchaseOrders/pendingPOstatus.html" target="_blank" class="block">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-300">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Pending</p>
+                        <p id="pending-pos-count" class="text-2xl font-bold text-orange-600 dark:text-orange-400 mt-1">--</p>
+                    </div>
+                    <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/20 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-clock text-orange-600 dark:text-orange-400"></i>
+                    </div>
+                </div>
+            </div>
+            </a>
+            
+            <div class="bg-white dark:bg-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-300">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Completed</p>
+                        <p id="completed-pos-count" class="text-2xl font-bold text-green-600 dark:text-green-400 mt-1">--</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-check-circle text-green-600 dark:text-green-400"></i>
+                    </div>
+                </div>
+            </div>
+            <a href="https://ntwoods.github.io/PurchaseOrders/manageHoldPO" target="_blank" class="block">
+                <div class="hold-po-card bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Hold PO</p>
+                            <p id="hold-po-count" class="text-2xl font-bold text-red-600 dark:text-red-400 mt-1">--</p>
+                        </div>
+                        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+         
+           </div>      
+      
+      <section class="section" id="purchase-orders">
+        <h2 class="section-title">💼 Purchase Orders Management</h2>
+        <div class="purchase-grid">
+          <div class="card loading" id="purchaseVerifyCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/POverifier'">
+            <div class="card-icon">🔍</div>
+            <h3 class="card-title">PO Verification</h3>
+            <div class="card-count" id="purchaseVerifyCount">Loading...</div>
+          </div>
+
+          <div class="card loading" id="poSupplierCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/SendToSupplier'">
+            <div class="card-icon">📤</div>
+            <h3 class="card-title">Send PO to Supplier</h3>
+            <div class="card-count" id="poSupplierCount">Loading...</div>
+          </div>
+
+          <div class="card loading" id="getDispatchDateCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/GetDispatchDate'">
+            <div class="card-icon">📅</div>
+            <h3 class="card-title">Get Dispatch Date</h3>
+            <div class="card-count" id="getDispatchDateCount">Loading...</div>
+          </div>
+
+          <div class="card loading" id="dispatchFollowUpCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/DispatchFollowUp'">
+            <div class="card-icon">📞</div>
+            <h3 class="card-title">Dispatch Follow Up</h3>
+            <div class="card-count" id="dispatchFollowUpCount">Loading...</div>
+          </div>
+
+          <div class="card loading" id="dispatchFollowUpADayBeforeCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/DispatchFollowUpADayBefore'">
+            <div class="card-icon">📞</div>
+            <h3 class="card-title">Dispatch Follow Up A Day Before</h3>
+            <div class="card-count" id="dispatchFollowUpADayBeforeCount">Loading...</div>
+          </div>
+          
+          <div class="card loading" id="getDispatchDetailsCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/GetDispatch&LR'">
+            <div class="card-icon">📋</div>
+            <h3 class="card-title">Get Dispatch & LR Details</h3>
+            <div class="card-count" id="getDispatchDetailsCount">Loading...</div>
+          </div>
+
+
+          <div class="card loading" id="receivedAtGodown" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/ReceivedAtGodown.html'">
+            <div class="card-icon">📋</div>
+            <h3 class="card-title">Goods Received At Godown</h3>
+            <div class="card-count" id="receivedAtGodownCount">Loading...</div>
+          </div>
+         
+          <div class="card loading" id="manageHoldPOCard" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/manageHoldPO.html'">
+            <div class="card-icon">📋</div>
+            <h3 class="card-title">Manage Hold PO</h3>
+            <div class="card-count" id="manageHoldPOCount">Loading...</div>
+          </div>          
+
+          <div class="card loading" id="acPortal" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/AcDashboard.html'">
+            <div class="card-icon">📋</div>
+            <h3 class="card-title">Accounts Portal</h3>
+            <div class="card-count" id="acPortalCount">Loading...</div>
+          </div>                 
+        
+          <div class="card" onclick="location.href='https://ntwoods.github.io/PurchaseOrders/PO_WATCH'">
+            <div class="card-icon">🎯</div>
+            <h3 class="card-title">360° PO Watch</h3>
+            <div class="card-count">Monitor All</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script>
+    const overallPOStats = 'https://script.google.com/macros/s/AKfycby-pFC_0AeZIal3ZBTV9Ut20h5NOHtP1e6rY_UQ0ZhSi8nEMz6ZEMKx3dT0a-cKbhA4tA/exec';
+    async function fetchOverallPOStats() {
+    try {
+        const response = await fetch(overallPOStats);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (data) {
+            // Use specific IDs for robustness
+            const totalPosCountElem = document.getElementById('total-pos-count');
+            const pendingPosCountElem = document.getElementById('pending-pos-count');
+            const completedPosCountElem = document.getElementById('completed-pos-count');
+            const holdPoCountElem = document.getElementById('hold-po-count');
+
+
+            if (totalPosCountElem) totalPosCountElem.textContent = data.totalOrders !== undefined ? data.totalOrders : 'N/A';
+            if (pendingPosCountElem) pendingPosCountElem.textContent = data.pendingOrders !== undefined ? data.pendingOrders : 'N/A';
+            if (completedPosCountElem) completedPosCountElem.textContent = data.completedOrders !== undefined ? data.completedOrders : 'N/A';
+            if (holdPoCountElem) holdPoCountElem.textContent = data.ordersOnHold !== undefined ? data.ordersOnHold : 'N/A';
+        }
+    } catch (err) {
+        console.error('Failed to load overall PO stats:', err);
+        // Optionally, set a default or error indicator if API fails
+        const totalPosCountElem = document.getElementById('total-pos-count');
+        const pendingPosCountElem = document.getElementById('pending-pos-count');
+        const completedPosCountElem = document.getElementById('completed-pos-count');
+        const holdPoCountElem = document.querySelector('.hold-po-card .text-2xl');
+
+        if (totalPosCountElem) totalPosCountElem.textContent = '?';
+        if (pendingPosCountElem) pendingPosCountElem.textContent = '?';
+        if (completedPosCountElem) completedPosCountElem.textContent = '?';
+        if (holdPoCountElem) holdPoCountElem.textContent = '?';
+    }
+}
+    window.addEventListener('DOMContentLoaded', fetchOverallPOStats);
+    
+  </script>
+  <script src="js/script.js"></script>
+</body>
+</html>
