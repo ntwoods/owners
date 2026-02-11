@@ -12,35 +12,6 @@ const apiMap = {
   priyamLevel5: ['priyamLevel5Count', 'priyamLevel5Card'],
   priyamLevel6: ['priyamLevel6Count', 'priyamLevel6Card'],
   priyamLevel7: ['priyamLevel7Count', 'priyamLevel7Card'],  
-
-  // Kalpana CRM
-  kalpanaLevel1: ['kalpanaLevel1Count', 'kalpanaLevel1Card'],
-  kalpanaLevel2: ['kalpanaLevel2Count', 'kalpanaLevel2Card'],
-  kalpanaLevel3: ['kalpanaLevel3Count', 'kalpanaLevel3Card'],
-  kalpanaLevel4: ['kalpanaLevel4Count', 'kalpanaLevel4Card'],
-  kalpanaLevel5: ['kalpanaLevel5Count', 'kalpanaLevel5Card'],
-  kalpanaLevel6: ['kalpanaLevel6Count', 'kalpanaLevel6Card'],
-  kalpanaLevel7: ['kalpanaLevel7Count', 'kalpanaLevel7Card'],   
-  
-  // Akansha Jain CRM
-  akanshaLevel1: ['akanshaLevel1Count', 'akanshaLevel1Card'],
-  akanshaLevel2: ['akanshaLevel2Count', 'akanshaLevel2Card'],
-  akanshaLevel3: ['akanshaLevel3Count', 'akanshaLevel3Card'],
-  akanshaLevel4: ['akanshaLevel4Count', 'akanshaLevel4Card'],
-  akanshaLevel5: ['akanshaLevel5Count', 'akanshaLevel5Card'],
-  akanshaLevel6: ['akanshaLevel6Count', 'akanshaLevel6Card'],
-  akanshaLevel7: ['akanshaLevel7Count', 'akanshaLevel7Card'],    
-
-  // Mahima Agarwal CRM
-  mahimaLevel1: ['mahimaLevel1Count', 'mahimaLevel1Card'],
-  mahimaLevel2: ['mahimaLevel2Count', 'mahimaLevel2Card'],
-  mahimaLevel3: ['mahimaLevel3Count', 'mahimaLevel3Card'],
-  mahimaLevel4: ['mahimaLevel4Count', 'mahimaLevel4Card'],
-  mahimaLevel5: ['mahimaLevel5Count', 'mahimaLevel5Card'],
-  mahimaLevel6: ['mahimaLevel6Count', 'mahimaLevel6Card'],
-  mahimaLevel7: ['mahimaLevel7Count', 'mahimaLevel7Card'],  
-  
-
   // Purchase Orders
   purchaseVerify: ['purchaseVerifyCount', 'purchaseVerifyCard'],
   poSupplier: ['poSupplierCount', 'poSupplierCard'],
@@ -68,34 +39,6 @@ const apiEndpoints = {
   priyamLevel6: 'https://script.google.com/macros/s/AKfycbyJ1CdfyAhTOhvxCYrE16rBYAfdVlrYpBLHMJj1UBB_xJvdcrUE3RBwNC9TDNMJpaZlWg/exec',
   priyamLevel7: 'https://script.google.com/macros/s/AKfycbx8Ourjem3diO9CTDl_wdGuJXSksFUImwIvq2gB1tFjeOUdNkLDdUso8he0-6CTlSJc/exec',  
   
-
-  // Kalpana CRM
-  kalpanaLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec?crm=Km%20Kalpana',
-  kalpanaLevel2: 'https://script.google.com/macros/s/AKfycbyA-Q0NczExlSQmU9ZSNqFsUzVU5u3mK1gQewekQA2L7VOL7rJzTiI-Vmhqc3fiu9bb/exec?crm=Km%20Kalpana',
-  kalpanaLevel3: 'https://script.google.com/macros/s/AKfycbxkduAfhEpEtxKXA_HuIm-lZQj62ZPZwXeZ_Fol-v6VrzfhoXY2lffR64pjPahKV2o/exec?crm=Km%20Kalpana',
-  kalpanaLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Km%20Kalpana',
-  kalpanaLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Km%20Kalpana',
-  kalpanaLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Km%20Kalpana',
-  kalpanaLevel7: 'https://script.google.com/macros/s/AKfycbx8Ourjem3diO9CTDl_wdGuJXSksFUImwIvq2gB1tFjeOUdNkLDdUso8he0-6CTlSJc/exec?crm=Km%20Kalpana',    
-
-  // Akansha Jain CRM
-  akanshaLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec?crm=Akansha%20Jain',
-  akanshaLevel2: 'https://script.google.com/macros/s/AKfycbyA-Q0NczExlSQmU9ZSNqFsUzVU5u3mK1gQewekQA2L7VOL7rJzTiI-Vmhqc3fiu9bb/exec?crm=Akansha%20Jain',
-  akanshaLevel3: 'https://script.google.com/macros/s/AKfycbxkduAfhEpEtxKXA_HuIm-lZQj62ZPZwXeZ_Fol-v6VrzfhoXY2lffR64pjPahKV2o/exec?crm=Akansha%20Jain',
-  akanshaLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Akansha%20Jain',
-  akanshaLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Akansha%20Jain',
-  akanshaLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Akansha%20Jain',
-  akanshaLevel7: 'https://script.google.com/macros/s/AKfycbx8Ourjem3diO9CTDl_wdGuJXSksFUImwIvq2gB1tFjeOUdNkLDdUso8he0-6CTlSJc/exec?crm=Akansha%20Jain',
-
-  // Mahima Agarwal CRM
-  mahimaLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec?crm=Mahima%20Agarwal',
-  mahimaLevel2: 'https://script.google.com/macros/s/AKfycbyA-Q0NczExlSQmU9ZSNqFsUzVU5u3mK1gQewekQA2L7VOL7rJzTiI-Vmhqc3fiu9bb/exec?crm=Mahima%20Agarwal',
-  mahimaLevel3: 'https://script.google.com/macros/s/AKfycbxkduAfhEpEtxKXA_HuIm-lZQj62ZPZwXeZ_Fol-v6VrzfhoXY2lffR64pjPahKV2o/exec?crm=Mahima%20Agarwal',
-  mahimaLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec?crm=Mahima%20Agarwal',
-  mahimaLevel5: 'https://script.google.com/macros/s/AKfycbwUr0UhENK6RGtdvYMC6-V0Khwb3kibKP4SLXC4nzL6Hm4idr6P-Olx4XTWvgZ_e2xk-Q/exec?crm=Mahima%20Agarwal',
-  mahimaLevel6: 'https://script.google.com/macros/s/AKfycbyo5HTKVwD2L5ORxrYKRzdJYK3trFJ5FOHkmPC00TsKQQ3iLJ6aXkboKQgzZJpuf6jNqQ/exec?crm=Mahima%20Agarwal',
-  mahimaLevel7: 'https://script.google.com/macros/s/AKfycbx8Ourjem3diO9CTDl_wdGuJXSksFUImwIvq2gB1tFjeOUdNkLDdUso8he0-6CTlSJc/exec?crm=Mahima%20Agarwal',      
-
   // Purchase Orders
   purchaseVerify: 'https://script.google.com/macros/s/AKfycbxnXt8Ti_RvyfVMRFGbZ-qCUAK-FhmRlN0-B1CDxdKGcVizExq6-MSNMHNCQIDekiiL/exec',
   poSupplier: 'https://script.google.com/macros/s/AKfycbzwhv2y4qc_mNMa9TUAezVA1EUvHReTkYTCcDj8zVYT1zyb3MSaouMYhvDV3ZcyVr0T/exec',
@@ -246,7 +189,4 @@ document.addEventListener('DOMContentLoaded', () => {
   setupSmoothScrollAndActiveLinks();
   // Set initial state of CRM sections to collapsed
   document.getElementById('priyamCrmSection').classList.add('collapsed');
-  document.getElementById('kalpanaCrmSection').classList.add('collapsed');
-  document.getElementById('akanshaCrmSection').classList.add('collapsed');
-  document.getElementById('mahimaCrmSection').classList.add('collapsed');
 });
