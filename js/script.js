@@ -31,7 +31,7 @@ const apiEndpoints = {
   dispatchConfirm: 'https://script.google.com/macros/s/AKfycbygRGmvL8xyEl0hCSkQdUBGLWG1xHIcY-sNVaPsj97WV0Y7fsOWNjtAJ-bo40xZweh7/exec',
 
   // Priyam Dixit
-  priyamLevel1: 'https://script.google.com/macros/s/AKfycby7o8IwfJ1vgI-_2Ad-epHZHmOdVqTbNVWnncuv4BnDIiIcWNmuzrEspA9jIvgy9G84eQ/exec',
+  priyamLevel1: 'https://script.google.com/macros/s/AKfycbyPrWZUhQSxWMNUeNU8q_QC5G-gRn_lZLdl0mN71uniF5fsJBLa9yfU2Tp454QLhMQ3wA/exec',
   priyamLevel2: 'https://script.google.com/macros/s/AKfycbyA-Q0NczExlSQmU9ZSNqFsUzVU5u3mK1gQewekQA2L7VOL7rJzTiI-Vmhqc3fiu9bb/exec',
   priyamLevel3: 'https://script.google.com/macros/s/AKfycbxkduAfhEpEtxKXA_HuIm-lZQj62ZPZwXeZ_Fol-v6VrzfhoXY2lffR64pjPahKV2o/exec',
   priyamLevel4: 'https://script.google.com/macros/s/AKfycbxMxIzOQmHv3LPTh6ca6i5uuguyH615cnjA5emEGNT0rmWpJlnrcg-KWNVP1DORkkcX/exec',
